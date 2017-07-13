@@ -1,0 +1,565 @@
+html, body, div, textarea, button, input, 
+span, h1, h2, h3, h4, h5, h6, p, pre, em, 
+img, strong, i, dl, dt, dd, ol, ul, li, 
+form, label, table, tbody, tfoot, thead, tr, th, td, canvas, video{
+	margin: 0;
+	padding: 0;
+    font-size: 14px;
+}
+
+ul{
+	list-style-type: none;
+}
+a{
+    text-decoration: none;
+}
+label{
+	-moz-user-select:none;/*火狐*/
+	-webkit-user-select:none;/*webkit浏览器*/
+	-ms-user-select:none;/*IE10*/
+	-khtml-user-select:none;/*早期浏览器*/
+	user-select:none;
+}
+textarea {
+    display: block;
+    resize: none;
+    border: solid 1px #ccc;
+}
+.common-a, .common-a:hover, .common-a:visited, .common-a:focus {
+    color: #3b4953;
+    text-decoration: none;
+    outline: none;
+}
+.indexTab{
+    padding:55px 0 30px 30px;
+    border: none;
+    height: 100%;
+    overflow: auto;
+}
+.indexTabul{
+    border-bottom:1px solid#ccc;
+    position: fixed;
+    top: 60px;
+    height: 55px;
+    right: 0;
+    left: 0;
+    margin-left: 210px;
+    padding-left: 30px;
+    overflow: hidden;
+    border-bottom: 1px solid#ccc;
+    background:#fff;
+    z-index:4;
+}
+.changesomething{
+    display: inline-block;
+    height: 100%;
+    line-height: 55px;
+    margin-right: 26px;
+    cursor: pointer;
+    font-size: 14px;
+}
+.indexTab>ul li a{
+    color:#000;
+    font-size:14px;
+}
+.active{
+    color:#2f9dea;
+}
+
+.tab-handle{
+    position: absolute;
+    top: 60px;
+    right: 30px;
+    height: 55px;
+    z-index: 4;
+}
+.tab-handle li{
+    line-height: 55px;
+}
+.tab-handle .a-btn {
+    display: inline-block;
+    width: 120px;
+    height: 30px;
+    margin-top: 13px;
+    line-height: 28px;
+    text-align: center;
+    border: solid 1px #2F9DEA;
+    color: #2F9DEA;
+    border-radius: 15px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+.tab-handle .a-btn:hover{
+    background: #2F9DEA;
+    color: #fff;
+}
+.breadcrumb{
+    border-bottom: solid 1px #e0e0e0;
+    padding: 0 30px;
+    height: 55px;
+}
+.breadcrumb .ivu-breadcrumb a{
+    color:#2F9DEA;
+}
+/*img(图片)容器*/
+.img-container{
+	overflow: hidden;
+}
+.img-container img{
+	width: 100%;
+	height: 100%;
+}
+a.img-container{
+	display: inline-block;
+}
+.full-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+a.full-alink {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+}
+.project-item .decorate {
+    width: 56px;
+    background-color: #4BCA88;
+    color: #fff;
+    height: 24px;
+    line-height: 24px;
+    background-image: none;
+}
+.team-member-item .decorate, .team-adviser-item .decorate, .project-item .decorate {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.decorate{
+	display: block;
+	width: 47px;
+	height: 33px;
+	line-height: 28px;
+	color: #fff;
+	font-size: 12px;
+	text-align: center;
+	overflow: hidden;
+	background-repeat: no-repeat;
+}
+.btn-type-1 {
+    display: inline-block;
+    width: 123px;
+    height: 34px;
+    line-height: 34px;
+    text-align: center;
+}
+.btn-type-blue {
+    color: #fff;
+    background-color: #2F9DEA;
+    border: solid 1px #2F9DEA;
+    border-radius: 0;
+    cursor: pointer;
+}
+.team_type {
+    position: absolute;
+    top: 15px;
+    left: -24px;
+    color: #fff;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    width: 100px;
+    text-align: center;
+}
+.clear:after{
+	display: block;
+	clear: both;
+	content: ".";
+	visibility: hidden;
+	height: 0;
+}
+.clear{
+	zoom:1;
+}
+.floatLeft{
+	float: left;
+}
+.floatRight{
+	float: right;
+}
+.overflow{
+	overflow: hidden;
+}
+.color_green{
+	background: #4BCA88;
+}
+.color_yellow{
+	background:#F7BE11;
+}
+/*团队列表页、项目列表页头部通用样式*/
+.down_head{
+    display: inline-block;
+    padding-top: 11px;
+}
+.form-control{
+    display: inline-block;
+    min-width: 123px;
+    width: auto;
+    float: left;
+    margin-right: 26px;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;  
+}
+#mc-content{
+    padding: 20px 30px;
+}
+.nonepic{
+    min-height: 400px;
+    background: url(../../assets/icon/bg_content-clear.png) 50% 50% no-repeat;
+}
+#padding_top{
+    padding-top: 30px;
+}
+.text-not-overflow {
+    overflow: hidden;
+    word-wrap: break-word;
+}
+.mc-content-bottom>.head {
+    height: 43px;
+    margin-top: 40px;
+    /*border-bottom: solid 3px #E9F4FB;*/
+}
+.team-info-card-type1{
+	position: relative;
+	display: inline-block;
+	width:270px;
+	height: 270px;
+	margin: 20px 20px 40px 40px;
+	border: solid 1px #C4C8CB;
+	overflow: hidden;
+}
+.ivu-tabs-nav .ivu-tabs-tab{
+    padding:8px 27px;
+}
+.row-lable-type-1 {
+    height: 26px;
+    line-height: 26px;
+    font-size: 14px;
+    border-bottom: solid 1px #ccc;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
+}
+/*里程碑事件块star*/
+.milestones-events{
+	position: relative;
+	margin-left: 175px;
+	margin-top: 20px;
+	width: 550px;
+	padding-bottom: 30px;
+	border-left: dashed 1px #768087;
+}
+.milestones-events .content{
+	margin-left: 22px;
+	height: 100%;
+	overflow: hidden;
+    word-wrap: break-word;
+}
+.milestones-events .content a{
+	margin: 0 3px;
+	color: #2F9DEA;
+}
+.milestones-events .content a:hover{
+	text-decoration: underline;
+}
+.milestones-events .time-lable{
+	position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 150px;
+    height: 20px;
+    margin-left: -175px;
+    text-align: right;
+    color: #768087;
+    overflow: hidden;
+    word-wrap: break-word;
+}
+.milestones-events .icon-xx{
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin-left: -16px;
+	margin-top: -7px;
+	display: block;
+	width: 30px;
+	height: 30px;
+	line-height: 30px;
+	font-size: 26px;
+	text-align: center;
+	color: #2F9DEA;
+	background-color: #fff;
+}
+/*里程碑事件块end*/
+.form-group-tips{
+	display: inline-block;
+	height: 20px;
+	line-height: 20px;
+	margin-left: 15px;
+	padding-left: 23px;
+	color: #E85959;
+}
+/*选择项样式 star*/
+.select-option {
+    float: left;
+    margin: 7px 10px;
+}
+.select-option input[type=radio], 
+.select-option input[type=checkbox] {
+    display: none;
+}
+.select-option label {
+	margin: 0;
+	padding: 7px 20px;
+    border: solid 1px #ccc;
+    font-weight: normal;
+    cursor: pointer;
+}
+.select-option input[type=radio]:checked+label, 
+.select-option input[type=checkbox]:checked+label {
+    background-color: #2F9DEA;
+    border-color: #2F9DEA;
+    color: #fff;
+}
+/*选择项样式 end*/
+.universal-picture-preview{
+	display: inline-block;
+	width: 200px;
+	height: 133px;
+	border: solid 1px #ddd;
+	overflow: hidden;
+}
+.universal-picture-preview img{
+	width: 100%;
+	height: 100%;
+}
+/*按钮样式 star*/
+.btn-type-1{
+	display: inline-block;
+	width: 123px;
+	height: 34px;
+	line-height: 34px;
+	text-align: center;
+}
+.attribute-save,
+.attribute-save:hover,
+.attribute-save:focus,
+.attribute-save:active,
+.attribute-save:visited{
+	border: solid 1px #2F9DEA;
+	color: #fff;
+	background-color: #2F9DEA;
+	text-decoration: none;
+}
+
+.attribute-cancel,
+.attribute-cancel:hover,
+.attribute-cancel:focus,
+.attribute-cancel:active,
+.attribute-cancel:visited,
+.attribute-draft,
+.attribute-draft:hover,
+.attribute-draft:focus,
+.attribute-draft:active,
+.attribute-draft:visited{
+	border: solid 1px #2F9DEA;
+	color: #2F9DEA;
+	background-color: #fff;
+}
+a.btn-type-1,
+a.btn-type-1:hover,
+a.btn-type-1:focus,
+a.btn-type-1:visited{
+	text-decoration: none;
+	outline: none;
+}
+/*按钮样式 end*/
+.informationtype>ul {
+    border-bottom: 2px solid #2F9DEA;
+    min-height: 41px;
+}
+
+.informationtype>ul li {
+    display: inline-block;
+    color: #2F9DEA;
+    margin-right: 0;
+    margin: 0;
+    padding: 12px 18px;
+    height: 100%;
+    /*line-height: 40px;*/
+    font-size: 14px;
+    border: 1px solid #2F9DEA;
+    border-bottom: none;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.informationtype>ul li.active {
+    background: #2F9DEA;
+    color: #fff;
+}
+.inforhead .choosen{
+    text-align: right;
+    line-height: 50px;
+}
+.a10f2{
+    height: 100%;
+}
+/*三种常用字体常用颜色*/
+
+/**/
+/*模态框相关*/
+.infomation_modal-detail>li{
+	position: relative;
+	margin-bottom: 10px;
+}
+.infomation_modal-detail>li>span:first-child{
+	width:102px;
+	float: left;
+}
+.infomation_modal-detail>li>span:last-child{
+    padding-left: 20px;
+    display: inline-block;
+    float:left;
+    width: 465px;
+}
+#wait_work-modal .choosen{
+	margin-bottom: 12px;
+}
+#wait_work-modal .choosen .form-cr{
+	margin-right: 10px;
+}
+#wait_work-modal .text_area{
+	width: 100%;
+}
+#wait_work-modal .text_area textarea{
+	width: 100%;
+	min-height: 80px;
+}
+/*回到顶部*/
+.ivu-back-top-inner{
+    background: #2f9dea;
+}
+.ivu-back-top-inner:hover{
+    background: #2f9dea;
+    opacity: 0.7;
+}
+/*案例页面中多层嵌套*/
+.first-content-tabs{
+    border-top: 1px dashed #ccc;
+}
+
+.wrap_content>.content-tabs-classify {
+    padding: 4px 0;
+    border-bottom: 1px dashed #ccc;
+}
+.content-tabs-classify .classify-right{
+    overflow: hidden;
+    min-height: 30px;
+}
+.content-tabs-classify .classify-left{
+    line-height: 30px;
+    height: 30px;
+    /*padding:0 40px 0 30px;*/
+    float: left;
+    min-width: 140px;
+    text-align: center;
+}
+
+.classify-list{
+    display: inline-block;
+    line-height: 30px;
+        height: 30px; 
+    padding: 0 30px 0 16px;
+    cursor: pointer;
+}
+.classify-wrapper{
+    border-top: 10px solid #f3f9fd;
+}
+/*个人首页多层嵌套结束*/
+/*头部公用标签*/
+.item-type-1{
+	border: solid 1px #eee;
+}
+.item-type-1>.head{
+	position: relative;
+	height: 30px;
+	line-height: 30px;
+	padding-left: 17px;
+	font-weight: bold;
+	background-color: #f2f2f2;
+}
+.item-type-1>.head>.handle-area{
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 30px;
+	font-weight: normal;
+}
+.item-type-1>.head>.handle-area>a{
+	padding: 7px 17px 7px 0;
+	color: #2F9DEA;
+}
+.item-type-1>.content{
+	padding: 15px 0 15px 15px;
+	overflow: auto;
+}
+/*头部公用标签结束*/
+.clear {
+    zoom: 1;
+}
+
+.floatLeft {
+    float: left;
+}
+
+.floatRight {
+    float: right;
+}
+.clear:after {
+    display: block;
+    clear: both;
+    content: ".";
+    visibility: hidden;
+    height: 0;
+}
+/*统计页面的头*/
+    .statics_padding{
+        padding-top: 20px;
+    }
+    .statics_padding li{
+        display: inline-block;
+    }
