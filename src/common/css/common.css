@@ -13,6 +13,12 @@ ul{
 a{
     text-decoration: none;
 }
+table{
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+}
 label{
 	-moz-user-select:none;/*火狐*/
 	-webkit-user-select:none;/*webkit浏览器*/
@@ -154,19 +160,15 @@ a.full-alink {
 	overflow: hidden;
 	background-repeat: no-repeat;
 }
-.btn-type-1 {
-    display: inline-block;
-    width: 123px;
-    height: 34px;
-    line-height: 34px;
-    text-align: center;
-}
 .btn-type-blue {
     color: #fff;
     background-color: #2F9DEA;
     border: solid 1px #2F9DEA;
     border-radius: 0;
     cursor: pointer;
+}
+.btn-type-blue:hover{
+    color: #fff;
 }
 .team_type {
     position: absolute;
@@ -372,7 +374,8 @@ a.full-alink {
 	width: 123px;
 	height: 34px;
 	line-height: 34px;
-	text-align: center;
+    text-align: center;
+    cursor: pointer;
 }
 .attribute-save,
 .attribute-save:hover,
@@ -557,9 +560,166 @@ a.btn-type-1:visited{
     height: 0;
 }
 /*统计页面的头*/
-    .statics_padding{
-        padding-top: 20px;
-    }
-    .statics_padding li{
-        display: inline-block;
-    }
+.statics_padding{
+    padding-top: 20px;
+}
+.statics_padding li{
+    display: inline-block;
+}
+/*表单中必须填写的共用部分*/
+.input-item {
+    margin-bottom: 50px;
+    position: relative;
+}
+.input-item.active>div{
+    position: relative;
+}
+.input-item.active>div:before{
+    position: absolute;
+    content: '*';
+    left: -10px;
+    top: 3px;
+    color: #E85959;    
+}
+/*多选框样式*/
+.form-cr{
+  display: inline-block;
+  margin-left: 8px;
+}
+.form-cr,
+.form-cr *,
+.form-cr *:before,
+.form-cr *:after{
+  box-sizing: border-box;
+}
+.form-cr input[type=radio],
+.form-cr input[type=checkbox]{
+  display: none;
+}
+.form-cr input[type=radio] + label,
+.form-cr input[type=checkbox] + label{
+  cursor: pointer;
+  font-weight: normal;
+  /*display: inline;*/
+}
+.form-cr input[type=radio] + label .box-icon{
+  position: relative;
+  display: inline-block;
+  top: 2px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: solid 1px #979797;
+}
+.form-cr input[type=checkbox] + label .box-icon{
+  position: relative;
+  display: inline-block;
+  top: 3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 2px;
+  border: solid 1px #979797;
+}
+.form-cr input[type="radio"]:checked + label .box-icon{
+  border-color: #34A6EA;
+}
+.form-cr input[type="checkbox"]:checked + label .box-icon{
+  background-color: #34A6EA;
+  border-color: #34A6EA;
+}
+.form-cr input[type="radio"]:checked + label .box-icon:before {
+    content: "";
+    position: absolute;
+    left: 3px;
+    top: 3px;
+    width: 6px;
+    height: 6px;
+    border: 3px solid #34A6EA;
+    border-radius: 50%;
+}
+.form-cr input[type="checkbox"]:checked + label .box-icon:before {
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: 3px;
+    width: 10px;
+    height: 6px;
+    border-left: 2px solid #FFF;
+    border-bottom: 2px solid #FFF;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}
+/*选择框样式-1star*/
+.form-checkbox {
+    position: relative;
+    top: 3px;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    font-size: 13px;
+}
+.form-checkbox.type-1{
+	width: auto;
+}
+.form-checkbox.type-1 .form-checkbox-lable{
+	line-height: 20px;
+	float: right;
+	margin-left: 5px;
+	margin-right: 17px;
+}
+.form-checkbox.type-1 .form-checkbox-inset-lable{
+	position: absolute;
+	top: 0;
+	left: 20px;
+	white-space: nowrap;
+	font-weight: normal;
+}
+.form-checkbox input[type="radio"], 
+.form-checkbox input[type="checkbox"] {
+    display: none;
+}
+.form-checkbox label {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    border: 1px solid #979797;
+    background: #FFF;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.form-checkbox input[type="radio"]:checked + label, 
+.form-checkbox input[type="checkbox"]:checked + label {
+    background: #34A6EA;
+    border-color: #34A6EA;
+}
+.form-checkbox input[type="radio"]:checked + label:before, 
+.form-checkbox input[type="checkbox"]:checked + label:before {
+    content: "";
+    position: absolute;
+    left: 3px;
+    top: 4px;
+    width: 10px;
+    height: 6px;
+    border-left: 2px solid #FFF;
+    border-bottom: 2px solid #FFF;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}
+/*底部条公共*/
+.bottom-handle{
+    margin-top: 27px;
+    padding-top: 7px;
+    border-top: solid 1px #ccc;
+}
+.bottom-handle .btn-type-1{
+    margin-right: 14px;
+}
+/*选择框样式-1end*/
+/*iview重置*/
+.ivu-breadcrumb{
+    padding: 28px 0 8px 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

@@ -38,7 +38,7 @@
                     </div>
                     <div class="bottom-btn-area">
                         <!-- 游客看到的按钮 -->
-                        <span class="btn-type-1 btn-type-blue" v-if="account&&account.powers==0">评价</span>
+                        <span class="btn-type-1 btn-type-blue" v-if="account&&account.powers==0" @click="modal1 = true">评价</span>
                         <!-- 团队负责人看到的按钮4 -->
                      
                         <span class="btn-type-1 btn-type-blue _hidden" v-if="account&&account.powers==1&& projectdata.bycreaterid===account.id" @click="edit()">编辑</span>
@@ -67,7 +67,23 @@
                         </Tab-pane>
                     </Tabs>                   
                 </div>
-            </div>                        
+            </div>
+            <Modal
+                v-model="modal1"
+                title="等级设置"
+                @on-ok="ok"
+                @on-cancel="cancel">
+                    <div class="form-group">
+                        <label>项目等级</label>
+                        <div>
+                            <div class="form-checkbox type-1" v-for="(data,index) in gradeData">
+                                <input type="radio" name="" :id="'grade'+index" :value="index+1" v-model="gradeId">
+                                <label :for="'grade'+index"><span class="box-icon"></span><span class="form-checkbox-inset-lable"></span></label>
+                                <span class="form-checkbox-lable" v-text="data.name"></span>
+                            </div>	                            
+                        </div>
+                    </div>
+            </Modal>                        
         </div>
     </div>
 </template>
@@ -81,7 +97,7 @@ export default {
             account:{
                 powers:null
             },
-            getprojectdetailurl:'http://localhost:2233/projectdetail.php',
+            getprojectdetailurl:'http://localhost:1235/php/projectdetail.php',
             projectdata:{
                 title:null,
                 img:null,
@@ -91,6 +107,8 @@ export default {
                 createremail:null,
                 summary:null,
                 bycreaterid:Number,
+
+
             },
             img:'./../../assets/demo/cycg3.jpg',
             teamdata:Array,
@@ -106,26 +124,27 @@ export default {
                     who:'陈同学',
                     what:'加入团队，任职前端攻城狮，同时又想做架构师，什么都想做加入团队，任职前端攻城狮，然而又想做架构师，什么都想做。加入团队，任职前端攻城狮,同时又想做架构师，什么都想做'
                 }
-            ]
+            ],
+            //模态框相关
+            modal1:false,
+            gradeId:0,
+            gradeData:null
         }
     },
     mounted(){
         var self = this;
-        this.account = JSON.parse(localStorage.getItem('user')); 
+        this.account = this.$store.state.account;
         axios.post(self.getprojectdetailurl,qs.stringify({
             id:this.$route.query.id,            
         })).then((res)=>{
             self.projectdata = res.data.project[0];
             self.teamdata = res.data.team;
             self.projecttypedata = res.data.projecttypedata;
-            this.$store.commit('CLOSE_MASK');;
-            console.log(self.projectdata.bycreaterid);
-            console.log(self.account.id);
+            self.gradeData = res.data.gradetype;
+            self.gradeId = res.data.project[0].level;
+            self.$store.commit('CLOSE_MASK');
         })
 
-    },
-    components:{
-        teamlist
     },
     methods:{
         edit:function(){
@@ -133,8 +152,21 @@ export default {
             this.$store.commit('RECORD_PROJECTID', this.$route.query.id);
             this.$router.push({path:'/project/projectadmin'});
             // console.log(this.projectdata.bycreaterid);
-        }
+        },
+        //模态框点击确定
+        ok () {
+            this.$Message.info('点击了确定');
+            console.log(this.gradeId);
+        },
+        //模态框点击取消
+        cancel () {
+            this.$Message.info('点击了取消');
+        }        
+    },
+    components:{
+        teamlist
     }
+
 }
 </script>
 

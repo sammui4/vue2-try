@@ -1,14 +1,14 @@
 <template>
     <div class="statistic">
         <p>日期范围：
-            <Date-picker type="month" placeholder="请选择起始日期" style="width: 150px" :options="option2" :value="startDate" @on-change="changedate(arguments,0)"></Date-picker>
-            到<Date-picker type="month" placeholder="请选择结束日期" style="width: 150px" :options="option2" :value="endDate" @on-change="changedate(arguments,1)"></Date-picker>
+            <Date-picker type="month" placeholder="请选择起始日期" style="width: 150px" :options="option2" :value="startDate" @on-change="changedate(arguments,0)" :clearable="false"></Date-picker>
+            到<Date-picker type="month" placeholder="请选择结束日期" style="width: 150px" :options="option2" :value="endDate" @on-change="changedate(arguments,1)" :clearable="false"></Date-picker>
         </p>
         <div class="echarts">
             <IEcharts :option="line1" :loading="loading" @ready="onReady(line1)" @click="onClick"></IEcharts>
         </div>
-        <Alert show-icon v-show="isalert">
-            开始日期必须小于结束日期！
+        <Alert show-icon v-if="isalert">
+            {{isalertinformation}}
         </Alert>
     </div>
 </template>
@@ -33,7 +33,7 @@ export default {
             option1: {
                 //日期过滤器
                 disabledDate(date) {
-                    return date && date.valueOf() > Date.now() - 86400000;
+                    return date && date.valueOf() > Date.now();
                 }
             },            
             option2: {
@@ -46,7 +46,10 @@ export default {
             value:[],
             startDate:null,
             endDate:null,
+            //警告框
             isalert:false,
+            isalertinformation:'',
+            //定时器
             timer:null,
             //第一个条形图的数据
             line1: {
@@ -166,17 +169,22 @@ export default {
             this.value[v1] = chart[0];
             if(v1==0){
                 this.startDate = chart[0];
-            }else{
+            }else if(v1==1){
                 this.endDate = chart[0];               
             }
-            
-            if(parseInt(this.startDate.replace(/-/g,'')) - parseInt(this.endDate.replace(/-/g,''))<0){ 
-                this.loading=true;
-                //发送数据和获取数据
-                getdata();
-            }else{
-                this.isalert = true;
-            }    
+            // if(this.startDate==''){
+            //     this.openisalert("请输入起始日期！");
+            // }else if(this.endDate==''){
+            //     this.openisalert("请输入结束日期！");
+            // }else if(this.startDate!=='' && this.endDate!==''){
+                //如果一个月大于
+                if(parseInt(this.startDate.replace(/-/g,'')) - parseInt(this.endDate.replace(/-/g,''))<0){      
+                    //发送数据和获取数据
+                    this.getdata();
+                }else{
+                    this.openisalert("开始日期必须小于结束日期！");
+                }   
+            // }
         },
         changetitle(){
             var ele = document.getElementsByClassName('ivu-tabs-tab-active')[0].innerText;
@@ -184,11 +192,22 @@ export default {
         },
         //发送和获取数据
         getdata(){
+            this.loading=true;
             var self = this;
             this.timer = setTimeout(function() {
                 clearTimeout(self.timer);
                 self.loading = false;
             }, 1500);
+        },
+        //打开警告框
+        openisalert(val){
+            var self = this;
+            this.isalertinformation=val;
+            this.isalert = true;
+            this.timer = setTimeout(function() {
+                clearTimeout(self.timer);
+                self.isalert = false;
+            }, 1500);            
         }
     },
     components: {

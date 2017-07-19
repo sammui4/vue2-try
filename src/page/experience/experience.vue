@@ -27,7 +27,7 @@
     export default {
         data:function(){
             return {      
-                experienceurl:'http://localhost:2233/experience.php',
+                experienceurl:'http://localhost:1235/php/experience.php',
                 account:null,
                 experiencehead:null,
                 maskheight:'60px',
@@ -36,23 +36,23 @@
                 currentView: 'experience_dev',
                 title:'',
                 timer:null,
-                nowurl:'http://localhost:2233/experience_dev.php',
+                nowurl:'http://localhost:1235/php/experience_dev.php',
                 urlarray:[
                     {
-                        url:'http://localhost:2233/experience_dev.php',
+                        url:'http://localhost:1235/php/experience_dev.php',
                     },
                     {
-                        url:'http://localhost:2233/laboratory.php',
+                        url:'http://localhost:1235/php/laboratory.php',
                     },
                     {
-                        url:'http://localhost:2233/online_dev.php',
+                        url:'http://localhost:1235/php/online_dev.php',
                     }
                 ],
                 arrays:null
             }
         },
         mounted:function(){
-            this.account = JSON.parse(localStorage.getItem('user'));
+            this.account = this.$store.state.account;
             this.arrays = this.urlarray[0].array;
             var self = this;
             axios.post(self.experienceurl).then((res) =>{

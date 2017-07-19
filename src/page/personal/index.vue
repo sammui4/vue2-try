@@ -23,17 +23,13 @@ import qs from 'qs';
 export default {
     data: function () {
         return {
-            indexrouterurl: 'http://localhost:2233/indexrouter.php',
+            indexrouterurl: 'http://localhost:1235/php/indexrouter.php',
             indexheads: []
         }
     },
     mounted: function () {
         var self = this;
-        //console.log(this.$store.state.account);
-        var powers = JSON.parse(localStorage.getItem('user')).powers;
-        // var params = new URLSearchParams();
-        // params.append('powers',powers);
-        // axios.post(self.indexrouterurl,params).then(function(res){
+        var powers = this.$store.state.account.powers;
         axios.post(self.indexrouterurl, qs.stringify({
             powers: powers
         })).then(function (res) {

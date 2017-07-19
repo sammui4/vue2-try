@@ -27,7 +27,7 @@
         </div>
         <!--url:放置图片上传的路径，width和height是指限制上传的图片尺寸大小-->
         <!--
-            url="http://localhost:2233/acceptImg.php"
+            url="http://localhost:1235/php/acceptImg.php"
             url="https://httpbin.org/post"
         -->
         <my-upload field="img"

@@ -2,7 +2,7 @@
     <div>
         <div class="competition-item" v-for="(data,index) in datalist">
             <div class="right" v-if="isedit==0">
-                <div><a href="#" class="common-a"><Icon type="edit"></Icon><span class="edit_left">编辑</span></a></div>
+                <div><router-link :to="{path:'/match/matchedit'}" class="common-a"><Icon type="edit"></Icon><span class="edit_left">编辑</span></router-link></div>
             </div>
             <div class="left">
                 <div class="state" v-text="data.typename" :class="'_'+data.state">未开始</div>

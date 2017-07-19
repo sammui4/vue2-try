@@ -67,11 +67,11 @@
                 //返回来的数据
                 listdata:[],
                 //头部的玩意的url
-                headurl:'http://localhost:2233/teamtype.php',
+                headurl:'http://localhost:1235/php/teamtype.php',
                 //拿那数据的接口
-                dataurl:'http://localhost:2233/teamdata.php',
+                dataurl:'http://localhost:1235/php/teamdata.php',
                 //paganation
-                dataurl2:'http://localhost:2233/teamdata2.php',
+                dataurl2:'http://localhost:1235/php/teamdata2.php',
                 //要发送的数据暂时储存
                 senddata:[],
                 //显示遮罩层
@@ -100,9 +100,9 @@
                 // axios.post(self.dataurl2, params).then((res) => {
                 axios.post(self.dataurl2, qs.stringify({
                     onepagenum:self.onepagenum,
-                    typeId:self.senddata[0].id,
-                    gradeId:self.senddata[1].id,
-                    devDegreeId:self.senddata[2].id,
+                    typeId:self.senddata[0].id-1,
+                    gradeId:self.senddata[1].id-1,
+                    devDegreeId:self.senddata[2].id-1,
                     page:self.nowpage
                 })).then((res) => {
                     self.listdata = res.data.datalist;
@@ -143,7 +143,7 @@
         },
         mounted:function(){
             var self = this;
-            this.account = JSON.parse(localStorage.getItem('user'));
+            this.account = this.$store.state.account;
             axios.post(self.headurl).then((res) =>{
                 self.headlist = res.data.datalist;
                 for(let i=0;i<res.data.datalist.length;i++){

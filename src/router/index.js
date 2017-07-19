@@ -19,19 +19,29 @@ const nofind = r => require.ensure([], () => r(require('../page/nofind/404.vue')
         const myproject = r => require.ensure([], () => r(require('../page/personal/myproject/myproject.vue')), 'myproject')
         const subscribe = r => require.ensure([], () => r(require('../page/personal/subscribe/subscribe.vue')), 'subscribe')
     const statistics = r => require.ensure([], () => r(require('../page/statistics/statistics.vue')), 'statistics')
+    //团队相关页面
     const team = r => require.ensure([], () => r(require('../page/team/team.vue')), 'team')
         const teamdetail = r => require.ensure([], () => r(require('../page/team/next/teamdetail.vue')), 'teamdetail')
         const teamadmin = r => require.ensure([], () => r(require('../page/team/next/teamadmin.vue')), 'teamadmin')
         const teamcreate = r => require.ensure([], () => r(require('../page/team/next/createteam.vue')), 'teamcreate')
-
+    //项目相关页面
     const project = r => require.ensure([], () => r(require('../page/project/project.vue')), 'project')
         const projectdetail = r => require.ensure([], () => r(require('../page/project/next/projectdetail.vue')), 'projectdetail')
         const projectadmin = r => require.ensure([], () => r(require('../page/project/next/projectadmin.vue')), 'projectadmin')
         const projectcreate = r => require.ensure([], () => r(require('../page/project/next/createproject.vue')), 'projectcreate')
+    //课程相关页面
     const classes = r => require.ensure([], () => r(require('../page/class/classes.vue')), 'classes')
+        const classesadmin = r => require.ensure([], () => r(require('../page/class/next/classedit.vue')), 'classesadmin')
+        const classesdetail = r => require.ensure([], () => r(require('../page/class/next/classesdetail.vue')), 'classesdetail')
+        const classescreate = r => require.ensure([], () => r(require('../page/class/next/classcreate.vue')), 'classescreate')
+    //大赛相关页面
     const match = r => require.ensure([], () => r(require('../page/match/match.vue')), 'match')
+        const matchcreate = r => require.ensure([], () => r(require('../page/match/next/matchcreate.vue')), 'matchcreate')
+        const matchedit = r => require.ensure([], () => r(require('../page/match/next/matchedit.vue')), 'matchedit')
     const cases = r => require.ensure([], () => r(require('../page/case/case.vue')), 'cases')
         const casedetail = r => require.ensure([], () => r(require('../page/case/next/casedetail.vue')), 'casedetail')
+        const caseupload = r => require.ensure([], () => r(require('../page/case/next/caseupload.vue')), 'caseupload')
+        const myupload = r => require.ensure([], () => r(require('../page/case/next/myupload.vue')), 'myupload')
 
     const experience = r => require.ensure([], () => r(require('../page/experience/experience.vue')), 'experience')
     const createzone = r => require.ensure([], () => r(require('../page/createzone/createzone.vue')), 'createzone')
@@ -83,9 +93,16 @@ export default [
                 {path:'/project/projectadmin',component:projectadmin,meta:{role:[1],needed:true,title:'大学生创新创业信息服务平台-项目编辑'}},
                 {path:'/project/projectcreate',component:projectcreate,meta:{title:'大学生创新创业信息服务平台-新建项目'}},
             {path:'/classes',component:classes,meta:{title:'大学生创新创业信息服务平台-课程'}},
+                {path:'/classes/classesadmin',component:classesadmin,meta:{role:[0],title:'大学生创新创业信息服务平台-课程编辑'}},
+                {path:'/classes/classesdetail',component:classesdetail,meta:{title:'大学生创新创业信息服务平台-课程详情'}},
+                {path:'/classes/classescreate',component:classescreate,meta:{role:[0],title:'大学生创新创业信息服务平台-课程创建'}},
             {path:'/match',component:match,meta:{title:'大学生创新创业信息服务平台-大赛'}},
+                {path:'/match/matchcreate',component:matchcreate,meta:{role:[0],title:'大学生创新创业信息服务平台-大赛创建'}},
+                {path:'/match/matchedit',component:matchedit,meta:{role:[0],title:'大学生创新创业信息服务平台-大赛编辑'}},
             {path:'/cases',component:cases,meta:{title:'大学生创新创业信息服务平台-案例'}},
-            {path:'/cases/:caseid',component:casedetail},
+                {path:'/cases/caseupload',component:caseupload,meta:{title:'大学生创新创业信息服务平台-案例上传'}},
+                {path:'/cases/myupload',component:myupload,meta:{title:'大学生创新创业信息服务平台-已上传的'}},
+                {path:'/cases/:caseid',component:casedetail},
             {path:'/experience',component:experience,meta:{title:'大学生创新创业信息服务平台-实验'}},
             {path:'/createzone',component:createzone,meta:{title:'大学生创新创业信息服务平台-创客空间'}},
             {path:'/employment',component:employment,meta:{title:'大学生创新创业信息服务平台-就业'}},

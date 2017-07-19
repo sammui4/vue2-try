@@ -30,18 +30,17 @@
     export default {
         data(){
             return{
-                dataurl:'http://localhost:2233/myproject.php',
-                account:null,
+                dataurl:'http://localhost:1235/php/myproject.php',
                 createproject:[],
                 joinproject:[]
             }
         },
         mounted(){
             var self = this;   
-            this.account = JSON.parse(localStorage.getItem('user'));      
+            var account = this.$store.state.account; 
             console.log(this.account.id);
             axios.post(self.dataurl, qs.stringify({
-                id:self.account.id,
+                id:account.id,
             })).then((res) => {
                 self.createproject = res.data.myCreateProject;
                 self.joinproject = res.data.myJoinProject;

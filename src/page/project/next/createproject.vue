@@ -12,21 +12,21 @@
             </div>
             <div class="form-content">
                 <form>
-                    <div class="input-item">
+                    <div class="input-item clear active">
                         <div class="form-group new-project-name">
                             <label for="new-project-name">项目名称</label>
                             <input id="new-project-name" type="text" placeholder="请输入团队名称"/>
                         </div>
                         <span class="form-group-tips">该名称已存在!</span>
                     </div>
-                    <div class="input-item">
+                    <div class="input-item clear active">
                         <div class="form-group new-project-intro">
                             <label for="new-project-intro">项目简介</label>
                             <textarea id="new-project-intro" name="" rows="9" cols="75"></textarea>
                         </div>
                         <span class="form-group-tips">提示!</span>
                     </div>
-                    <div class="input-item">
+                    <div class="input-item clear active">
                         <div class="form-group new-project-picture">
                             <label for="new-project-picture">项目图片</label><!--需要修改-->
                             <div>
@@ -49,7 +49,7 @@
                         </div>
                         <span class="form-group-tips">提示!</span>
                     </div>
-                    <div class="input-item">
+                    <div class="input-item clear active">
                         <div class="form-group new-project-type">
                             <label>项目类型</label>
                             <div class="project-type-list">
@@ -66,7 +66,7 @@
                         </div>
                         <span class="form-group-tips">提示!</span>
                     </div>
-                    <div class="input-item">
+                    <div class="input-item clear active">
                         <div class="form-group new-project-property">
                             <label>项目属性</label>
                             <div class="project-property-list">
@@ -80,7 +80,7 @@
                         </div>
                         <span class="form-group-tips">提示!</span>
                     </div>
-                    <div class="input-item">
+                    <div class="input-item clear active">
                         <div class="form-group new-project-team-select">
                             <label>项目所属团队</label>
                             <div class="project-team-select">
@@ -93,7 +93,7 @@
                         </div>
                         <span class="form-group-tips">提示!</span>
                     </div>
-                    <div class="input-item">
+                    <div class="input-item clear active">
                         <div class="form-group new-project-details">
                             <label for="new-project-details">项目详情</label>
                             <!--<textarea id="new-project-details" name="" rows="9" cols="75"></textarea>-->
@@ -101,7 +101,7 @@
                         </div>
                         <span class="form-group-tips">提示!</span>
                     </div>
-                    <div class="input-item">
+                    <div class="input-item clear active">
                         <div class="form-group new-project-accessory">
                             <label for="btn-select-accessory">附件上传</label>
                             <div>
@@ -114,7 +114,7 @@
                     <div class="form-handle">
                         <div class="btn-left-container">
                             <input type="submit" value="提交" class="btn-type-1 attribute-save"/>
-                            <input type="button" value="取消" class="btn-type-1 attribute-cancel"/>
+                            <router-link :to="{path:'/'}" class="btn-type-1 attribute-cancel">取消</router-link> 
                             <input type="button" value="保存为草稿" class="btn-type-1 attribute-draft"/>
                         </div>
                             
@@ -202,11 +202,8 @@
         padding-left: 50px;
         padding-right: 50px;
     }
-    .input-item{
-        overflow: auto;
-    }
+
     .form-content .form-group{
-        margin-bottom: 40px;
         float: left;
     }
     label{
@@ -245,6 +242,7 @@
         float: left;
         margin-top: 115px;
         margin-left: 17px;
+        padding: 6px 12px;
     }
     .new-project-picture .file-url{
         height: 30px;
@@ -301,4 +299,5 @@
         /*height: 200px;*/
         border: solid 1px #ccc;
     }
+
 </style>

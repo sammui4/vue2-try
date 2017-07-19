@@ -8,7 +8,7 @@
         </div>
         <div class="tab-handle">		
             <ul>
-                <li v-if="active==0"><a class="a-btn" href="javascript:">上传案例</a><a class="a-btn" href="javascript:">已上传的</a></li>
+                <li v-if="active==0"><router-link class="a-btn" :to="{path:'/cases/caseupload'}">上传案例</router-link><router-link class="a-btn" :to="{path:'/cases/myupload'}">已上传的</router-link></li>
                 <li v-if="account&&account.powers==0 && active==1"><a class="a-btn" href="javascript:">实验室使用安排</a></li>
                 <li v-if="account&&account.powers==0 && active==2"><span class="a-btn" @click="changeapproval">切换审批</span><span>目前审批方式：</span><strong v-if="account&&account.approvalMethods==0">系统审批申请</strong><strong v-if="account&&account.approvalMethods==1">人工审批申请</strong></li>
                 <li v-if="account&&account.powers==1 && active==2"><a class="a-btn" href="javascript:">预约设备</a></li>            
@@ -27,7 +27,7 @@
         data:function(){
             return{
                 account:null,
-                caseurl:'http://localhost:2233/case.php',
+                caseurl:'http://localhost:1235/php/case.php',
                 casehead:null,
                 currentView: 'casepot',
                 maskheight:'60px',
@@ -42,10 +42,10 @@
                             url:null
                         },
                         {
-                            url:'http://localhost:2233/casecenter.php',
+                            url:'http://localhost:1235/php/casecenter.php',
                         },
                         {
-                            url:'http://localhost:2233/caseenquipment.php',
+                            url:'http://localhost:1235/php/caseenquipment.php',
                         }
                 ],
                 nowurl:null,
@@ -83,7 +83,7 @@
         },
         mounted:function(){
             var self = this;
-            this.account = JSON.parse(localStorage.getItem('user'));
+            this.account = this.$store.state.account;
             axios.post(self.caseurl).then((res) =>{
                 self.casehead = res.data;
                 self.$store.commit('CLOSE_MASK');

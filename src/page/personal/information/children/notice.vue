@@ -20,7 +20,7 @@
                     <div class="infomation_poiot">	
                         <div class="floatLeft">
                             <div class="form-cr">
-                                <!--表单的多选绑定-->
+                                <!--表单的多选绑定数据-->
                                 <input type="checkbox" name="" :id="'info_'+index" :value="data.id" v-model="selectData">
                                 <label :for="'info_'+index"><span class="box-icon"></span><span class="form-checkbox-inset-lable"></span></label>
                             </div>												
@@ -85,7 +85,8 @@
                 //还回来的数据
                 informationdataarray:[],
                 //用户信息
-                account: {},
+                //用户id
+                id:null,
                 //分页器总页数
                 allpage: 0,
                 //当前页数
@@ -99,9 +100,9 @@
                 //储存定时器
                 timer:null,
                 //切换和加载首页数据
-                newurl:'http://localhost:2233/newsdata.php',
+                newurl:'http://localhost:1235/php/newsdata.php',
                 //分页切换数据
-                newpageurl:'http://localhost:2233/newspage.php',
+                newpageurl:'http://localhost:1235/php/newspage.php',
                 //模态框
                 model1:false,
                 //模态框数据
@@ -124,7 +125,8 @@
                 this.ismask = true;
                 self.nowpage = 1;
                 axios.post(self.newurl, qs.stringify({
-                    account:self.account,
+                    // account:self.account,
+                    id:self.id,
                     onepagenum:self.onepagenum,
                     isread:bol,
                     nowpage:self.nowpage
@@ -148,7 +150,8 @@
                 this.ismask = true;
                 self.nowpage = val;
                 axios.post(self.newpageurl, qs.stringify({
-                    account:self.account,
+                    // account:self.account,
+                    id:self.id,
                     onepagenum:self.onepagenum,
                     nowpage:val,
                     isread:self.isread
@@ -202,9 +205,10 @@
         mounted:function(){
             var self = this;
             this.ismask = true;
-            self.account = JSON.parse(localStorage.getItem('user')).account;
+            this.id = this.$store.state.account.id;
             axios.post(self.newurl, qs.stringify({
-                account:self.account,
+                // account:self.account,
+                id:self.id,
                 onepagenum:self.onepagenum,
                 isread:self.isread,
                 nowpage:self.nowpage

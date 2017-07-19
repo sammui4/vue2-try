@@ -85,13 +85,13 @@ export default {
         return {
             activeName: 'all',
             //信息类型
-            inforurl: 'http://localhost:2233/dealwithpagebyadmin.php',
+            inforurl: 'http://localhost:1235/php/dealwithpagebyadmin.php',
             //分页器点击切换
-            pagationdataurl: 'http://localhost:2233/informationdata.php',
+            pagationdataurl: 'http://localhost:1235/php/informationdata.php',
             //上面详情信息点击切换
-            clickchangedata: 'http://localhost:2233/chargeinfomation.php',
+            clickchangedata: 'http://localhost:1235/php/chargeinfomation.php',
             //点击未读信息显示
-            unreadshowurl:'http://localhost:2233/unreadshow.php',
+            unreadshowurl:'http://localhost:1235/php/unreadshow.php',
             //信息头部（那五个玩意）
             inforhead: [],
             //当前默认页
@@ -100,8 +100,8 @@ export default {
             isread: false,
             //信息数组
             informationdataarray: [],
-            //用户信息
-            account: {},
+            //用户id
+            id:null,
             //分页器总页数
             allpage: 0,
             //当前页数
@@ -145,7 +145,8 @@ export default {
             this.thistext = texts;
             self.nowpage = 1;
             axios.post(self.clickchangedata, qs.stringify({
-                account:self.account,
+                // account:self.account,
+                id:self.id,
                 types:texts,
                 onepagenum:self.onepagenum,
                 isread:self.isread
@@ -163,7 +164,8 @@ export default {
             this.isread = bolean; 
             self.nowpage = 1;
             axios.post(self.clickchangedata, qs.stringify({
-                account: self.account,
+                // account: self.account,
+                id:self.id,
                 types:self.thistext,
                 onepagenum:self.onepagenum,
                 isread:bolean
@@ -181,7 +183,8 @@ export default {
             this.ismask = true;
             self.nowpage = val;
             axios.post(self.pagationdataurl, qs.stringify({
-                account:self.account,
+                // account:self.account,
+                id:self.id,
                 types:self.thistext,
                 onepagenum:self.onepagenum,
                 nowpage:val,
@@ -232,18 +235,19 @@ export default {
     },
     mounted: function () {
         var self = this;
-        var power = JSON.parse(localStorage.getItem('user')).powers;
-
+        // console.log(this.$store.state.account);
+        var power = this.$store.state.account.powers
         axios.post(self.inforurl, qs.stringify({
             powers:power
         })).then((res) => {
             self.inforhead = res.data;
         })
 
-        self.account = JSON.parse(localStorage.getItem('user')).account;
+        this.id = this.$store.state.account.id;
         //默认请求未读的全部数据
         axios.post(self.clickchangedata, qs.stringify({
-            account:self.account,
+            // account:self.account,
+            id:self.id,
             types:'all',
             onepagenum:self.onepagenum,
             isread:self.isread

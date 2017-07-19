@@ -8,7 +8,7 @@
             </div>
             <div class="right">
                 <strong class="course-name">
-                    <router-link :to="{ path: 'classes' }" v-text="data.title">U理论</router-link>
+                    <router-link :to="{ path: '/classes/classesdetail',query:{id:data.id} }" v-text="data.title">U理论</router-link>
                 </strong>
                 <div class="information _1">
                     <span v-text="data.lessontype">课程分类</span>
@@ -24,8 +24,8 @@
                     <span class="content" v-text="data.time">2016/7/8~2016/8/9</span>
                 </div>
                 <div class="bottom-btn-area" v-if="bottom!==undefined"> 
-                    <a href="javascript:" class="btn-type-1 btn-type-blue" v-if="bottom.powers==0">编辑开课信息</a>
-                    <a href="javascript:" class="btn-type-1 btn-type-blue" v-if="bottom.powers==1">课程详情</a>                    
+                    <router-link :to="{path:'/classes/classesadmin',query:{id:data.id}}" class="btn-type-1 btn-type-blue" v-if="bottom.powers==0">编辑开课信息</router-link>
+                    <router-link :to="{path:'/classes/classesdetail',query:{id:data.id}}" class="btn-type-1 btn-type-blue" v-if="bottom.powers==1">课程详情</router-link>                    
                 </div>
             </div>
         </div> 

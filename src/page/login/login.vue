@@ -132,7 +132,7 @@
         data: function () {
             return {
                 
-                loginurl: 'http://localhost:2233/login.php',
+                loginurl: 'http://localhost:1235/php/login.php',
                 senddata: {
                     account: '',
                     password: ''
@@ -183,9 +183,8 @@
                             self.mes.errordata = res.data.messager;
                             //密码正确就跳转到首页
                         } else {
-                            localStorage.setItem('user', JSON.stringify(res.data[0]));
                             this.userinfo = res.data[0];
-                            //把登陆信息传到后台
+                            //把登陆信息传到vuex
                             this.$store.commit('RECORD_USERINFO', res.data[0]);
                             this.$router.push({ path: '/index.html' });
 

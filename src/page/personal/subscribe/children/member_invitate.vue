@@ -74,14 +74,14 @@ export default {
             //储存定时器
             timer:null,
             //切换和加载首页数据
-            newurl:'http://localhost:2233/member_invitate.php',
+            newurl:'http://localhost:1235/php/member_invitate.php',
             //分页切换数据
-            newpageurl:'http://localhost:2233/member_invitate_paga.php',
+            newpageurl:'http://localhost:1235/php/member_invitate_paga.php',
         }
     },
     mounted(){
         var self = this;
-        this.account = JSON.parse(localStorage.getItem('user'));
+        this.account = this.$store.state.account;
         axios.post(self.newurl, qs.stringify({
             id:self.account.id,
             onepagenum:self.onepagenum,

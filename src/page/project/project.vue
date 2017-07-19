@@ -45,11 +45,11 @@
                 //返回来的数据
                 listdata:[],
                 //头部的玩意的url
-                headurl:'http://localhost:2233/projecttype.php',
+                headurl:'http://localhost:1235/php/projecttype.php',
                 //获取数据
-                dataurl:'http://localhost:2233/projectdata.php',
+                dataurl:'http://localhost:1235/php/projectdata.php',
                 //分页
-                dataurl2:'http://localhost:2233/projectdata2.php',
+                dataurl2:'http://localhost:1235/php/projectdata2.php',
                 //要发送的数据暂时储存
                 senddata:[],
                 //显示遮罩层
@@ -84,18 +84,11 @@
             ha:function(){
                 var self = this;
                 this.ismask = true;
-                // var params = new URLSearchParams();
-                // params.append('onepagenum',self.onepagenum)
-                // params.append('typeId', self.senddata[0].id);
-                // params.append('gradeId', self.senddata[1].id);
-                // params.append('devDegreeId', self.senddata[2].id);
-                // params.append('page', self.nowpage);   
-                // axios.post(self.dataurl, params).then((res) => {
                 axios.post(self.dataurl, qs.stringify({
                     onepagenum:self.onepagenum,
-                    typeId:self.senddata[0].id,
-                    gradeId:self.senddata[1].id,
-                    devDegreeId:self.senddata[2].id,
+                    typeId:self.senddata[0].id-1,
+                    gradeId:self.senddata[1].id-1,
+                    devDegreeId:self.senddata[2].id-1,
                     page:self.nowpage                    
                 })).then((res) => {
                     self.listdata = res.data.datalist;
@@ -114,7 +107,7 @@
         },
         mounted:function(){
                 var self = this;
-                this.account = JSON.parse(localStorage.getItem('user'));
+                this.account = this.$store.state.account;
                 axios.post(self.headurl).then((res) =>{
                     self.headlist = res.data.datalist;
                     for(let i=0;i<res.data.datalist.length;i++){

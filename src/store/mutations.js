@@ -76,7 +76,7 @@ export default {
         }else{
             state.account = data;
             state.login = true;
-            localStorage.setItem('user', JSON.stringify(data));
+            localStorage.setItem('user', JSON.stringify(data.id));
         }
     },
     //记录项目创建者id

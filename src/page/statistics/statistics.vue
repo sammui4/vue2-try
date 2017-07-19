@@ -21,9 +21,8 @@ export default {
     data: function () {
         return {
             headdatas: [],
-            headdataurl: 'http://localhost:2233/statisticshead.php',
+            headdataurl: 'http://localhost:1235/php/statisticshead.php',
             active:0,
-            account:null,
             maskheight:'60px',
             ismask:false,
             active:0,
@@ -39,12 +38,11 @@ export default {
     },
     mounted:function(){
         var self = this;
-        var power = JSON.parse(localStorage.getItem('user')).powers;
+        var powers = this.$store.state.account.powers;
         axios.post(self.headdataurl, qs.stringify({
-            powers:power
+            powers:powers
         })).then((res) => {
             self.headdatas = res.data;
-            // console.log(self.headdatas);
         })        
     },
     methods:{

@@ -3,12 +3,14 @@
         <div>  
             <ul class="_1 fast-handle" v-if="account.powers == 1">
                 <li v-for="(botton,index) in bottondata">
-                    <a class="a-btn" href="javascript:" :style="{'background-color':botton.color}">
+                    <!-- <a class="a-btn" href="javascript:" :style="{'background-color':botton.color}"> -->
+                    <router-link class="a-btn" :to="{path:botton.href}" :style="{'background-color':botton.color}">
                         <div class="content">
                             <i class="common-icon" :style="{'background-position-x':-50*index+'px'}"></i>
                             <span v-text="botton.text"></span>
                         </div>
-                    </a>
+                    <!-- </a> -->
+                    </router-link>
                 </li>
             </ul> 
             <div class="index_content clear">
@@ -47,7 +49,7 @@
                         <div class="head">
                             <span>推荐课程</span>
                             <span class="more">
-                                <router-link :to="{ path: 'classes' }">更多</router-link>
+                                <router-link :to="{ path: '/classes' }">更多</router-link>
                             </span>
                         </div>
                         <div class="content">
@@ -58,7 +60,7 @@
                         <div class="head">
                             <span>推荐赛事</span>
                             <span class="more">
-                                <router-link :to="{ path: 'match' }">更多</router-link>
+                                <router-link :to="{ path: '/match' }">更多</router-link>
                             </span>
                         </div>
                         <div class="content">
@@ -69,7 +71,7 @@
                         <div class="head">
                             <span>推荐案例</span>
                             <span class="more">
-                                <router-link :to="{ path: 'cases' }">更多</router-link>
+                                <router-link :to="{ path: '/cases' }">更多</router-link>
                             </span>
                         </div>
                         <div class="content">
@@ -80,7 +82,7 @@
                         <div class="head">
                             <span>推荐团队</span>
                             <span class="more">
-                                <router-link :to="{ path: 'team' }">更多</router-link>
+                                <router-link :to="{ path: '/team' }">更多</router-link>
                             </span>
                         </div>
                         <div class="content">
@@ -91,7 +93,7 @@
                         <div class="head">
                             <span>推荐项目</span>
                             <span class="more">
-                                <router-link :to="{ path: 'project' }">更多</router-link>
+                                <router-link :to="{ path: '/project' }">更多</router-link>
                             </span>
                         </div>
                         <div class="content">
@@ -296,8 +298,8 @@
             return{
                 account:{},
                 //获取indexpage数据
-                indexurl:'http://localhost:2233/indexpage.php',
-                texturl:'http://localhost:2233/renderdata.php',
+                indexurl:'http://localhost:1235/php/indexpage.php',
+                texturl:'http://localhost:1235/php/renderdata.php',
                 onepagenum:12,
                 //设备按钮
                 bottondata:[
@@ -314,12 +316,12 @@
                     {
                         color:'#4AC987',
                         text:"创建项目",
-                        href:'javascript:'
+                        href:'/project/projectcreate'
                     },
                     {
                         color:'#F6BD10',
                         text:"创建团队",
-                        href:'javascript:'
+                        href:'/team/teamcreate'
                     },                
                 ],
                 //模拟新消息
@@ -338,13 +340,7 @@
         },
         mounted:function(){
             var self = this;
-            this.account = JSON.parse(localStorage.getItem('user'));
-            // this.account = this.$store.state.account;
-            // console.log(this.account);
-            // var params = new URLSearchParams();
-            // params.append('account', self.account.account);
-            // params.append('onepagenum', self.onepagenum);
-            // axios.post(self.indexurl, params).then((res) => {
+            this.account = this.$store.state.account;
             axios.post(self.indexurl, qs.stringify({
                 account:self.account.account,
                 onepagenum:self.onepagenum

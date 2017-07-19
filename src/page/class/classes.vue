@@ -30,7 +30,7 @@
                 onepagenum: 12,
                 //返回来的数据
                 listdata:[],
-                dataurl:'http://localhost:2233/lessondata.php',
+                dataurl:'http://localhost:1235/php/lessondata.php',
                 //屏蔽层高度
                 maskheight:'60px',
                 ismask:false,
@@ -60,11 +60,6 @@
         },
         mounted:function(){
             var self = this;
-            // this.powers = JSON.parse(localStorage.getItem('user')).powers;
-            // var params = new URLSearchParams();
-            // params.append('onepagenum', self.onepagenum);
-            // params.append('nowpage', self.nowpage);
-            // axios.post(self.dataurl, params).then((res) => {
             axios.post(self.dataurl, qs.stringify({
                 onepagenum:self.onepagenum,
                 nowpage:self.nowpage               

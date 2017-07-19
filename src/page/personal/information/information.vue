@@ -20,7 +20,7 @@ import masking from '../../../components/mask/mask.vue'
 export default {
     data: function () {
         return {
-            informationrouterurl: 'http://localhost:2233/informationrouter.php',
+            informationrouterurl: 'http://localhost:1235/php/informationrouter.php',
             informationtype: [
                 {
                     pagename:'待办',

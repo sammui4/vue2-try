@@ -56,7 +56,7 @@
                 onepagenum: 12,
                 //返回来的数据
                 listdata:[],
-                dataurl:'http://localhost:2233/createzone.php',
+                dataurl:'http://localhost:1235/php/createzone.php',
                 //屏蔽层高度
                 maskheight:'60px',
                 ismask:false,

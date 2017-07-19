@@ -47,11 +47,11 @@
                 //返回来的数据
                 listdata:[],
                 //头部的玩意的url
-                headurl:'http://localhost:2233/matchtype.php',
+                headurl:'http://localhost:1235/php/matchtype.php',
                 //拿那数据的接口
-                dataurl:'http://localhost:2233/matchdata.php',
+                dataurl:'http://localhost:1235/php/matchdata.php',
                 //paganation
-                dataurl2:'http://localhost:2233/matchdata2.php',
+                dataurl2:'http://localhost:1235/php/matchdata2.php',
                 //要发送的数据暂时储存
                 senddata:[],
                 //显示遮罩层
@@ -71,12 +71,6 @@
                 this.nowpage = val;
                 var self = this;
                 this.ismask = true;
-                // var params = new URLSearchParams();
-                // params.append('onepagenum',self.onepagenum)
-                // params.append('matchLevel', self.senddata[0].id);
-                // params.append('status', self.senddata[1].id);
-                // params.append('page', self.nowpage);   
-                // axios.post(self.dataurl2, params).then((res) => {
                 axios.post(self.dataurl2, qs.stringify({
                     onepagenum:self.onepagenum,
                     matchLevel:self.senddata[0].id,
@@ -91,12 +85,6 @@
             ha:function(){
                 var self = this;
                 this.ismask = true;
-                // var params = new URLSearchParams();
-                // params.append('onepagenum',self.onepagenum)
-                // params.append('matchLevel', self.senddata[0].id);
-                // params.append('status', self.senddata[1].id);
-                // params.append('page', self.nowpage);   
-                // axios.post(self.dataurl, params).then((res) => {
                 axios.post(self.dataurl, qs.stringify({
                     onepagenum:self.onepagenum,
                     matchLevel:self.senddata[0].id,
@@ -119,7 +107,8 @@
         },
         mounted:function(){
             var self = this;
-            this.powers = JSON.parse(localStorage.getItem('user')).powers;
+            this.powers = this.$store.state.account.powers;
+            console.log(this.powers);
             axios.post(self.headurl).then((res) =>{
                 self.headlist = res.data.datalist;
                 for(let i=0;i<res.data.datalist.length;i++){

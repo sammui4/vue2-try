@@ -1,17 +1,17 @@
 <template>
-        <div class="statistic">
-            <p>日期范围：
-                <Date-picker type="date" placeholder="请选择起始日期" style="width: 150px" :options="option1" :value="startDate" @on-change="changedate(arguments,0)"></Date-picker>
-                到<Date-picker type="date" placeholder="请选择结束日期" style="width: 150px" :options="option1" :value="endDate" @on-change="changedate(arguments,1)"></Date-picker>
-            </p>
-            <div class="echarts">
-                 <IEcharts :option="pie1" :loading="loading" @ready="onReady(pie1)" @click="onClick"></IEcharts> 
-                <!-- <div class="bie_charts"></div> -->
-            </div>
-            <Alert show-icon v-show="isalert">
-                开始日期必须小于结束日期！
-            </Alert>
+    <div class="statistic">
+        <p>日期范围：
+            <Date-picker type="date" placeholder="请选择起始日期" style="width: 150px" :options="option1" :value="startDate" @on-change="changedate(arguments,0)" :clearable="false"></Date-picker>
+            到<Date-picker type="date" placeholder="请选择结束日期" style="width: 150px" :options="option1" :value="endDate" @on-change="changedate(arguments,1)" :clearable="false"></Date-picker>
+        </p>
+        <div class="echarts">
+                <IEcharts :option="pie1" :loading="loading" @ready="onReady(pie1)" @click="onClick"></IEcharts> 
+            <!-- <div class="bie_charts"></div> -->
         </div>
+        <Alert show-icon v-if="isalert">
+            {{isalertinformation}}
+        </Alert>
+    </div>
 </template>
 <script>
 // import axios from 'axios'
@@ -36,7 +36,7 @@ export default {
             option1: {
                 //日过滤器
                 disabledDate(date) {
-                    return date && date.valueOf() > Date.now() - 86400000;
+                    return date && date.valueOf() > Date.now();
                 }
             },            
             option2: {
@@ -49,9 +49,11 @@ export default {
             loading: false,
             //是否有警告框
             isalert:false,
+            isalertinformation:'',
             //时间值
             startDate:null,
             endDate:null,
+            //定时器
             timer:null,
             //第一个条形图的数据
             pie1:{
@@ -119,8 +121,7 @@ export default {
     },
     mounted: function () {
         var self = this;
-        // var params = new URLSearchParams();
-        var power = JSON.parse(localStorage.getItem('user')).powers;
+        var power = this.$store.state.account.powers;
         //获取当前日期
         this.$store.commit('GET_TODAY');
         this.startDate = this.$store.state.tomonthfirstday;
@@ -151,13 +152,22 @@ export default {
             }else{
                 this.endDate = chart[0];
             }
-            if(parseInt(this.startDate.replace(/-/g,'')) - parseInt(this.endDate.replace(/-/g,''))<0){
-                this.loading=true;
-                 getdata()
-
-            }else{
-                this.isalert = true;
-            }    
+            //检查数据
+            // if(this.startDate==''){
+            //     this.openisalert("请输入起始日期！");
+            // }else if(this.endDate==''){
+            //     this.openisalert("请输入结束日期！");
+            // }else if(this.startDate!=='' && this.endDate!==''){
+                //如果一个月大于
+                if(parseInt(this.startDate.replace(/-/g,'')) - parseInt(this.endDate.replace(/-/g,''))<0){      
+                    //发送数据和获取数据
+                    console.log(this.startDate);
+                    console.log(this.endDate);
+                    this.getdata();
+                }else{
+                    this.openisalert("开始日期必须小于结束日期！");
+                }   
+            // }   
         },
         changetitle(){
             var ele = document.getElementsByClassName('ivu-tabs-tab-active')[0].innerText;
@@ -171,10 +181,21 @@ export default {
             // this.pie1.series[0].data[2].value = this.res.data.min10;
             // this.pie1.title.subtext= this.subtext+ res.data.TeamCount;
             var self = this;
+            this.loading = true;
             this.timer = setTimeout(function() {
                 clearTimeout(self.timer);
                 self.loading = false;
             }, 1500);
+        },
+        //打开警告框
+        openisalert(val){
+            var self = this;
+            this.isalertinformation=val;
+            this.isalert = true;        
+            this.timer = setTimeout(function() {
+                clearTimeout(self.timer);
+                self.isalert = false;
+            }, 1500);             
         }
     },
     components: {

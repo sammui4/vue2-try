@@ -38,8 +38,8 @@
             return {
                 //传回来的头部
                 filters:null,
-                filterurl:'http://localhost:2233/filterlist.php',
-                headurl:'http://localhost:2233/casenextheaddata.php',
+                filterurl:'http://localhost:1235/php/filterlist.php',
+                headurl:'http://localhost:1235/php/casenextheaddata.php',
                 //分页器总页数
                 allpage: 0,
                 //当前页数
@@ -117,7 +117,7 @@
                         data:null,
                         activenum:-1,
                         open:false,
-                        headurl:'http://localhost:2233/casenextheaddata.php',
+                        headurl:'http://localhost:1235/php/casenextheaddata.php',
                     }
                 },
                 methods:{

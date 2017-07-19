@@ -24,10 +24,10 @@
                         <div class="top">
                             <div class="_1">
                                 <div class="portrait">
-                                    <a href="#/personal">
+                                    <router-link :to="{path:'/personal'}">
                                         <img alt="头像" v-if="account.img!=='' && account.img!==null" :src="account.img"/>
                                         <img alt="头像" v-else src="../../assets/default/hhu-portrait.png" />
-                                    </a>
+                                    </router-link>
                                 </div>
                                 <div class="description">
                                     <strong class="text-ellipsis-1" v-text="account.account"></strong>
@@ -83,7 +83,7 @@ export default {
         return {
             active: true,
             leftside: [],
-            url: 'http://localhost:2233/leftside.php',
+            url: 'http://localhost:1235/php/leftside.php',
             account: {},
             //右边的玩意
             isshow:false,
@@ -95,14 +95,10 @@ export default {
     },
     mounted: function () {
         var self = this;   
-        var item = JSON.parse(localStorage.getItem('user'));
+        var item = this.$store.state.account;
         this.account = item;
         console.log(item);
         //把登陆的用户信息传入到vuex中
-        // this.$store.commit('GET_USERINFO', self.account);
-        // var params = new URLSearchParams();
-        // params.append('powers', self.account.powers);
-        // axios.post(this.url,params).then(function (res) {
         axios.post(this.url,qs.stringify({powers:self.account.powers})).then(function (res) {
             self.leftside = res.data;
         }).catch(function (err) {
@@ -512,7 +508,9 @@ export default {
     color: #000;
     font-size: 14px;
 }
-
+.sl-content li.active{
+    border-left: solid 4px #2f9dea;
+}
 .sl-content li.active span {
     background-position-y: -22px;
 }
@@ -520,9 +518,5 @@ export default {
 .sl-content .router-link-active {
     color: #2f9dea;
 }
-
-
-
-
 
 </style>

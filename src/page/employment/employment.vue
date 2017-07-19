@@ -32,18 +32,18 @@
                     }
                 ],
                 currentView:'employment_information',
-                headurl:'http://localhost:2233/employmenthead.php',
-                nowurl:'http://localhost:2233/employment_information.php',
+                headurl:'http://localhost:1235/php/employmenthead.php',
+                nowurl:'http://localhost:1235/php/employment_information.php',
                 //总页数
                 allpage: 0,
                 //当前页数
                 nowpage: 1,
                 urlarray:[
                     {
-                        url:'http://localhost:2233/employment_information.php'
+                        url:'http://localhost:1235/php/employment_information.php'
                     },
                     {
-                        url:'http://localhost:2233/recruitment_information.php'
+                        url:'http://localhost:1235/php/recruitment_information.php'
                     }
                 ]
             }

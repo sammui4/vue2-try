@@ -77,15 +77,15 @@ export default {
             //储存定时器
             timer:null,
             //切换和加载首页数据
-            newurl:'http://localhost:2233/site_application_record.php',
+            newurl:'http://localhost:1235/php/site_application_record.php',
             //分页切换数据
-            newpageurl:'http://localhost:2233/site_application_record_paga.php',
+            newpageurl:'http://localhost:1235/php/site_application_record_paga.php',
         }
     },
     mounted(){
         var self = this;
         // this.ismask = true;
-        this.account = JSON.parse(localStorage.getItem('user'));
+        this.account = this.$store.state.account;
         axios.post(self.newurl, qs.stringify({
             id:self.account.id,
             onepagenum:self.onepagenum,
